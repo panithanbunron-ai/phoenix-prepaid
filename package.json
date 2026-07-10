@@ -8,7 +8,8 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format:check": "prettier --check .",
+        "notify:PR": "tsx src/utils/discord-noti-pr.ts"
     },
     "keywords": [],
     "author": "",
@@ -22,10 +23,13 @@
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-playwright": "^2.10.5",
         "prettier": "^3.9.4",
+        "ts-node": "^10.9.2",
+        "tsx": "^4.23.0",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.63.0"
     },
     "dependencies": {
+        "axios": "^1.18.1",
         "dotenv": "^17.4.2",
         "oracledb": "^7.0.0"
     }
