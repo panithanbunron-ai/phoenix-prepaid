@@ -17,4 +17,4 @@ test('get started link', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
 });
 
-// ทดสอบ auto PR
+// ทดสอบ auto PR รอบ 2 พร้อม review
