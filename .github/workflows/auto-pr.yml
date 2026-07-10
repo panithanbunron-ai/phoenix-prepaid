@@ -1,37 +1,37 @@
 name: Auto PR
 
 on:
-  push:
-    branches-ignore:
-      - feature/auto-pr
-      - main
-      - master
+    push:
+        branches-ignore:
+            - feature/auto-pr
+            - main
+            - master
 
 permissions:
-  contents: read
-  pull-requests: write
+    contents: read
+    pull-requests: write
 
 jobs:
-  open-pr:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    open-pr:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Open PR to feature/auto-pr (if none exists)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          BRANCH="${GITHUB_REF#refs/heads/}"
-          BASE="feature/auto-pr"
+            - name: Open PR to feature/auto-pr (if none exists)
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  set -euo pipefail
+                  BRANCH="${GITHUB_REF#refs/heads/}"
+                  BASE="feature/auto-pr"
 
-          PR_NUMBER=$(gh pr list --head "$BRANCH" --base "$BASE" --state open --json number --jq '.[0].number')
+                  PR_NUMBER=$(gh pr list --head "$BRANCH" --base "$BASE" --state open --json number --jq '.[0].number')
 
-          if [ -z "$PR_NUMBER" ]; then
-            gh pr create --base "$BASE" --head "$BRANCH" --title "$BRANCH" --fill \
-              || echo "No changes to open a PR for (branch has no diff against $BASE). Skipping."
-          else
-            echo "PR #$PR_NUMBER already open for $BRANCH"
-          fi
+                  if [ -z "$PR_NUMBER" ]; then
+                    gh pr create --base "$BASE" --head "$BRANCH" --title "$BRANCH" --fill \
+                      || echo "No changes to open a PR for (branch has no diff against $BASE). Skipping."
+                  else
+                    echo "PR #$PR_NUMBER already open for $BRANCH"
+                  fi
