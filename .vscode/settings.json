@@ -27,7 +27,5 @@
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "cSpell.ignoreRegExpList": [
-        "[฀-๿]+"
-    ]
+    "cSpell.enabled": false
 }
