@@ -9,11 +9,21 @@
         "lint:fix": "eslint . --fix",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "notify:PR": "tsx src/utils/discord-noti-pr.ts"
+        "notify:PR": "tsx src/utils/discord-noti-pr.ts",
+        "prepare": "husky"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
+    "lint-staged": {
+        "*.{ts,js}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,md}": [
+            "prettier --write"
+        ]
+    },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
         "@playwright/test": "^1.61.1",
@@ -22,6 +32,8 @@
         "eslint": "^10.6.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-playwright": "^2.10.5",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.0.8",
         "prettier": "^3.9.4",
         "ts-node": "^10.9.2",
         "tsx": "^4.23.0",
